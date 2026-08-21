@@ -1,0 +1,7 @@
+data/raw/*.csv
+data/processed/*.csv
+outputs/day6/train.csv
+outputs/day6/test.csv
+outputs/day6/train_time.csv
+outputs/day6/test_time.csv
+.DS_Store
