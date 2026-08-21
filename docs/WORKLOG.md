@@ -245,10 +245,15 @@
     - 사용자가 GitHub 공개 저장소에 올리기로 함. 데이터 출처: [Kaggle - King County House Sales Prediction](https://www.kaggle.com/datasets/harlfoxem/housesalesprediction)
     - 데이터 파일은 저장소에 올리지 않기로 결정 → `README.md`에 "데이터 출처" 섹션 추가(Kaggle 링크 + 받은 뒤 `data/raw/kc_house_data.csv`에 넣고 `01_clean_data.py` 실행하라는 안내), "데이터" 항목 문구를 "용량 문제로 미포함"으로 수정
     - `.gitignore` 생성: `data/raw/*.csv`, `data/processed/*.csv`, `outputs/day6/train*.csv`, `outputs/day6/test*.csv`, `.DS_Store` 제외 (결과 요약 CSV·그래프·스크립트·문서는 그대로 포함)
-    - 아직 git 저장소 초기화 전 — 사용자가 GitHub에서 새 저장소(Public)를 만들고 주소를 주면 이어서 진행 예정
+    - 저장소 이름 추천 요청에 `kc-house-price-portfolio` 등 3안 제시, 사용자가 `heeheej1996-design/kc-house-price-portfolio`로 생성
+
+44. **GitHub 저장소에 최초 푸시**
+    - `git init` → `.gitignore` 적용 확인(데이터 CSV 32개 파일 중 자동 제외됨) → 커밋(32개 파일) → `origin` 연결 → `main` 브랜치 push 완료
+    - 저장소: https://github.com/heeheej1996-design/kc-house-price-portfolio
+    - 사용자에게 브라우저에서 README 렌더링 육안 확인 요청(체크리스트 🔴 항목, 아직 미확인)
 
 ### 다음 할 일 (미착수)
-- (진행 중) GitHub 저장소 주소 받으면 git init → 커밋 → 원격 연결 → push
+- 브라우저에서 README가 GitHub에 제대로 렌더링되는지 사용자 확인 대기
 - 34번 피처 엔지니어링 실험을 별도 스크립트(예: `11_feature_engineering_experiment.py`)로 정식 추가할지 결정
 - `bedrooms`, `sqft_basement` 등 계수 부호 이상 원인 확인 (VIF 등 다중공선성 점검) — 21개 변수 풀모델(5번) 기준
 - `date` 컬럼 가공(연/월 추출) 후 모델에 반영 여부 검토 — 34번에서 `house_age` 등 일부는 이미 시도, 중요도는 낮았음
