@@ -272,10 +272,16 @@
 49. **README·REPORT를 튜닝 결과로 갱신**
     - `README.md` "핵심 결과" 표를 "XGBoost(튜닝 후, 최종) RMSE 79,008 / 59.5% 감소"로 갱신, 튜닝 방법(GridSearchCV+TimeSeriesSplit) 설명 추가, "재현 방법"에 `11_tune_models.py` 추가
     - `docs/REPORT.md` 5번 항목에 튜닝 전후 비교와 새 최고 모델(XGBoost) 반영, 6번 "다음 단계"에서 "하이퍼파라미터 튜닝 필요" 항목 제거(완료됨)
-    - 커밋 후 GitHub push 예정
+    - 커밋 후 GitHub push 완료
+
+50. **잘 맞은 예측 사례(best5) 분석 — 오차 큰 5건(33번)과 대조**
+    - `scripts/12_best_predictions.py` 작성: 튜닝된 XGBoost(최종 모델)로 test_time 예측, 절대오차가 가장 작은 5건 저장
+    - 결과: 오차 6~58달러 수준으로 사실상 정확히 맞춤 (예: 실제 284,000달러 → 예측 284,006달러)
+    - 오차 큰 5건(33번, 소형·구축·인기동네 이상치)과 달리, 이 5건은 면적·등급 등 일반적인 특징만으로 설명되는 평범한 매물로 보임 — 모델이 "전형적인 집"은 잘 맞히고 "예외적인 집"은 못 맞히는 경향을 대조로 확인
+    - `outputs/day6/best5_predictions.csv` 저장, 커밋 후 GitHub push 예정
 
 ### 다음 할 일 (미착수)
-- 34번 피처 엔지니어링 실험을 별도 스크립트(예: `12_feature_engineering_experiment.py`)로 정식 추가할지 결정
+- 34번 피처 엔지니어링 실험을 별도 스크립트(예: `13_feature_engineering_experiment.py`)로 정식 추가할지 결정
 - `bedrooms`, `sqft_basement` 등 계수 부호 이상 원인 확인 (VIF 등 다중공선성 점검) — 21개 변수 풀모델(5번) 기준
 - `date` 컬럼 가공(연/월 추출) 후 모델에 반영 여부 검토 — 34번에서 `house_age` 등 일부는 이미 시도, 중요도는 낮았음
 - `condition`이 price와 무관한 이유 추가로 살펴볼지 결정 (의외 패턴 후속 조사)

@@ -30,6 +30,7 @@ python3 scripts/08_question_charts.py     # 문제정의 "확인해 볼 것 3가
 python3 scripts/09_relationship_charts.py # price-변수 관계 그래프 3장
 python3 scripts/10_geo_price_map.py       # 위치-가격 지도
 python3 scripts/11_tune_models.py         # 랜덤포레스트/XGBoost 하이퍼파라미터 튜닝(GridSearchCV)
+python3 scripts/12_best_predictions.py    # 잘 맞은 예측 5건 (오차 큰 5건과 대조)
 ```
 
 모든 스크립트는 프로젝트 루트에서 실행하는 걸 기준으로 상대 경로를 씁니다. `02_split_data.py`는 랜덤 분할(`train.csv`/`test.csv`, 초기 탐색용)과 시간순 분할(`train_time.csv`/`test_time.csv`)을 둘 다 만들지만, **`04` 이후 모든 스크립트는 시간순 분할을 공식 기준으로 사용합니다** (이유는 [`docs/problem_definition.md`](docs/problem_definition.md) v2 참고).
