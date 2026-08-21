@@ -250,10 +250,12 @@
 44. **GitHub 저장소에 최초 푸시**
     - `git init` → `.gitignore` 적용 확인(데이터 CSV 32개 파일 중 자동 제외됨) → 커밋(32개 파일) → `origin` 연결 → `main` 브랜치 push 완료
     - 저장소: https://github.com/heeheej1996-design/kc-house-price-portfolio
-    - 사용자에게 브라우저에서 README 렌더링 육안 확인 요청(체크리스트 🔴 항목, 아직 미확인)
+45. **GitHub 업로드 체크리스트 완료**
+    - 브라우저 확장 미설치 상태라 WebFetch로 페이지 텍스트 기반 렌더링 확인(제목·표·링크·목록·코드블록 정상) 1차로 수행
+    - 이후 사용자가 브라우저로 직접 열어 README 확인 완료(체크리스트 🔴 항목 해소)
+    - 4개 체크리스트(저장소 생성/업로드/README 확인/데이터 출처 링크 대체) **전부 완료**
 
 ### 다음 할 일 (미착수)
-- 브라우저에서 README가 GitHub에 제대로 렌더링되는지 사용자 확인 대기
 - 34번 피처 엔지니어링 실험을 별도 스크립트(예: `11_feature_engineering_experiment.py`)로 정식 추가할지 결정
 - `bedrooms`, `sqft_basement` 등 계수 부호 이상 원인 확인 (VIF 등 다중공선성 점검) — 21개 변수 풀모델(5번) 기준
 - `date` 컬럼 가공(연/월 추출) 후 모델에 반영 여부 검토 — 34번에서 `house_age` 등 일부는 이미 시도, 중요도는 낮았음
