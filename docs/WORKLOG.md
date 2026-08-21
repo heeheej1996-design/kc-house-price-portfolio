@@ -255,6 +255,11 @@
     - 이후 사용자가 브라우저로 직접 열어 README 확인 완료(체크리스트 🔴 항목 해소)
     - 4개 체크리스트(저장소 생성/업로드/README 확인/데이터 출처 링크 대체) **전부 완료**
 
+46. **README에 이미지 2장 추가**
+    - `outputs/day6/rf_feature_importance.png`(핵심 결과 섹션), `outputs/day6/geo_price_map.png`(신규 "위치가 가격에 미치는 영향" 섹션) 추가
+    - 나머지 7장(q1~q3, rel1~rel3, price_distribution)은 과정 중간 산출물 성격이라 README에서 제외, `docs/REPORT.md`에만 남김
+    - 커밋 후 push 완료
+
 ### 다음 할 일 (미착수)
 - 34번 피처 엔지니어링 실험을 별도 스크립트(예: `11_feature_engineering_experiment.py`)로 정식 추가할지 결정
 - `bedrooms`, `sqft_basement` 등 계수 부호 이상 원인 확인 (VIF 등 다중공선성 점검) — 21개 변수 풀모델(5번) 기준
