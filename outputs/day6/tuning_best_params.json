@@ -1,0 +1,12 @@
+{
+  "랜덤포레스트": {
+    "max_depth": null,
+    "min_samples_leaf": 1,
+    "n_estimators": 300
+  },
+  "XGBoost": {
+    "learning_rate": 0.1,
+    "max_depth": 6,
+    "n_estimators": 300
+  }
+}

@@ -29,6 +29,7 @@ python3 scripts/07_price_distribution.py  # price 분포 그래프
 python3 scripts/08_question_charts.py     # 문제정의 "확인해 볼 것 3가지" 그래프
 python3 scripts/09_relationship_charts.py # price-변수 관계 그래프 3장
 python3 scripts/10_geo_price_map.py       # 위치-가격 지도
+python3 scripts/11_tune_models.py         # 랜덤포레스트/XGBoost 하이퍼파라미터 튜닝(GridSearchCV)
 ```
 
 모든 스크립트는 프로젝트 루트에서 실행하는 걸 기준으로 상대 경로를 씁니다. `02_split_data.py`는 랜덤 분할(`train.csv`/`test.csv`, 초기 탐색용)과 시간순 분할(`train_time.csv`/`test_time.csv`)을 둘 다 만들지만, **`04` 이후 모든 스크립트는 시간순 분할을 공식 기준으로 사용합니다** (이유는 [`docs/problem_definition.md`](docs/problem_definition.md) v2 참고).
@@ -43,12 +44,14 @@ matplotlib 한글 폰트로 `AppleGothic`(macOS 전용)을 씁니다. 다른 OS�
 |---|---|---|
 | 기준선 (평균값) | 195,257 | - |
 | 선형회귀 | 88,477 | 54.7% 감소 |
-| XGBoost | 82,574 | 57.7% 감소 |
-| **랜덤포레스트 (최고)** | **81,472** | **58.3% 감소** |
+| 랜덤포레스트 | 81,472 | 58.3% 감소 |
+| **XGBoost (튜닝 후, 최종)** | **79,008** | **59.5% 감소** |
+
+랜덤포레스트/XGBoost는 `GridSearchCV`(시간순 교차검증 `TimeSeriesSplit`)로 하이퍼파라미터를 튜닝했습니다. 랜덤포레스트는 기존 설정이 이미 최적값과 같아 변화가 없었고, **XGBoost는 `learning_rate=0.1, max_depth=6, n_estimators=300`으로 튜닝하면서 RMSE가 82,574→79,008로 개선돼 최종 1등 모델이 됐습니다** (튜닝 전후 비교: `outputs/day6/tuning_before_after.csv`).
 
 ![랜덤포레스트 변수 중요도](outputs/day6/rf_feature_importance.png)
 
-가장 중요했던 변수는 `lat`(위도)과 `sqft_living`(실거주 면적)이었습니다.
+가장 중요했던 변수는 `lat`(위도)과 `sqft_living`(실거주 면적)이었습니다 (변수 중요도 그래프는 튜닝 전 랜덤포레스트 기준).
 
 자세한 내용은 [`docs/REPORT.md`](docs/REPORT.md)를 참고하세요.
 

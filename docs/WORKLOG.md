@@ -260,11 +260,24 @@
     - 나머지 7장(q1~q3, rel1~rel3, price_distribution)은 과정 중간 산출물 성격이라 README에서 제외, `docs/REPORT.md`에만 남김
     - 커밋 후 push 완료
 
+47. **제출 체크리스트 6개 항목 점검**
+    - 사용자가 제시한 6개 항목(EDA/기준선/train-test분할/3개모델회귀/하이퍼파라미터튜닝/리포트+깃헙) 중 5개는 이미 완료 확인, **"하이퍼파라미터 튜닝"만 누락** 상태였음을 보고
+
+48. **랜덤포레스트·XGBoost 하이퍼파라미터 튜닝**
+    - `scripts/11_tune_models.py` 작성: `GridSearchCV` + `TimeSeriesSplit(n_splits=5)`로 train_time만 사용해 튜닝(테스트셋 미사용, 교차검증도 날짜순 유지 — 04번과 같은 이유로 일반 랜덤 K-fold 대신 사용)
+    - 랜덤포레스트 그리드: n_estimators[100,300], max_depth[10,None], min_samples_leaf[1,4] → 최적값이 기존 설정과 동일(max_depth=None, min_samples_leaf=1, n_estimators=300), 성능 변화 없음(RMSE 81,471.51 그대로)
+    - XGBoost 그리드: n_estimators[100,300], max_depth[3,6], learning_rate[0.05,0.1] → 최적값 learning_rate=0.1, max_depth=6, n_estimators=300, **RMSE 82,573.53→79,008.21로 개선(4.3%↓)** → 튜닝 후 XGBoost가 전체 모델 중 최고 성능으로 등극(기준선 대비 59.5% 감소, R² 0.8355)
+    - `outputs/day6/tuning_before_after.csv`, `outputs/day6/tuning_best_params.json` 저장
+
+49. **README·REPORT를 튜닝 결과로 갱신**
+    - `README.md` "핵심 결과" 표를 "XGBoost(튜닝 후, 최종) RMSE 79,008 / 59.5% 감소"로 갱신, 튜닝 방법(GridSearchCV+TimeSeriesSplit) 설명 추가, "재현 방법"에 `11_tune_models.py` 추가
+    - `docs/REPORT.md` 5번 항목에 튜닝 전후 비교와 새 최고 모델(XGBoost) 반영, 6번 "다음 단계"에서 "하이퍼파라미터 튜닝 필요" 항목 제거(완료됨)
+    - 커밋 후 GitHub push 예정
+
 ### 다음 할 일 (미착수)
-- 34번 피처 엔지니어링 실험을 별도 스크립트(예: `11_feature_engineering_experiment.py`)로 정식 추가할지 결정
+- 34번 피처 엔지니어링 실험을 별도 스크립트(예: `12_feature_engineering_experiment.py`)로 정식 추가할지 결정
 - `bedrooms`, `sqft_basement` 등 계수 부호 이상 원인 확인 (VIF 등 다중공선성 점검) — 21개 변수 풀모델(5번) 기준
 - `date` 컬럼 가공(연/월 추출) 후 모델에 반영 여부 검토 — 34번에서 `house_age` 등 일부는 이미 시도, 중요도는 낮았음
-- 랜덤포레스트/XGBoost 하이퍼파라미터 튜닝 여부 결정 (현재는 기본값 근처)
 - `condition`이 price와 무관한 이유 추가로 살펴볼지 결정 (의외 패턴 후속 조사)
 - 34번 신규 피처(특히 `zipcode_mean_price`) 세트를 공식 모델 비교표(`model_comparison.csv`)에 반영할지 결정
 - bedrooms/bathrooms=0인 16건의 원인 확인 (REPORT.md 6번에서도 미해결로 명시)

@@ -1,0 +1,3 @@
+﻿모델,RMSE_튜닝전,RMSE_튜닝후,MAE_튜닝전,MAE_튜닝후,R2_튜닝전,R2_튜닝후,best_params
+랜덤포레스트,81471.51,81471.51,58175.76,58175.76,0.825,0.825,"{""max_depth"": null, ""min_samples_leaf"": 1, ""n_estimators"": 300}"
+XGBoost,82573.53,79008.21,59382.47,56563.51,0.8203,0.8355,"{""learning_rate"": 0.1, ""max_depth"": 6, ""n_estimators"": 300}"
